@@ -1,0 +1,52 @@
+package u5e5;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+/**
+ * @author Dominguez Cazales Jennifer
+ */
+public class Operaciones {
+    Scanner leer = new Scanner(System.in);
+    List <Integer>lista = new ArrayList<Integer>();
+    Random r = new Random();
+    public void Ingresar() {
+        int can;
+        System.out.println("Se ingresaran numeros aleatorios entre el 1 y el 100");
+        System.out.println("¿Cuantos numeros deseas ingresar?");
+        can=leer.nextInt();
+        for (int i = 0; i < can; i++) {
+            int valorDado = r.nextInt(100); 
+            lista.add(valorDado);
+        }
+    }
+    public void Mostrar() {
+        int cantidad=lista.size();
+        if (cantidad==0) {
+            System.out.println("La lista esta vacia, ingresa algo");
+        }else{
+                 System.out.println(lista);      
+        } 
+    }
+    public void Ordenar() {
+    int division=(lista.size()/2),aux,salto,i;
+        if (division==0){
+            System.out.println("La lista esta vacia, ingresa algo");
+        }
+        for (salto = division ; salto!=0 ; salto/=2) {
+            boolean cambio=true;
+            while(cambio){
+               cambio=false;
+                for (i = salto; i< lista.size(); i++) {
+                     if (lista.get(i-salto)>lista.get(i)) {
+                    aux=lista.get(i);
+                     lista.set(i,lista.get(i-salto));
+                     lista.set(i-salto,aux);                    
+                     cambio=true;
+                    }
+                 }
+            }
+        }  
+        System.out.println("__Lista Ordenada__");
+    }
+}
